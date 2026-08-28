@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class ATM_PIN_Retry {
+
+    static void atmPinRetry(String correctPin, String[] attempts) {
+
+        int attempt = 0;
+        boolean success = false;
+
+        while (attempt < attempts.length && !success) {
+
+            if (attempts[attempt].equals(correctPin)) {
+                success = true;
+                System.out.println("PIN accepted");
+                break;
+            }
+
+            attempt++;
+        }
+
+        if (!success) {
+            System.out.println("Card blocked — too many incorrect attempts");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter correct PIN: ");
+        String correctPin = sc.nextLine();
+
+        System.out.print("Enter number of attempts (maximum 3): ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        String[] attempts = new String[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter attempt " + (i + 1) + ": ");
+            attempts[i] = sc.nextLine();
+        }
+
+        atmPinRetry(correctPin, attempts);
+
+        sc.close();
+    }
+}
