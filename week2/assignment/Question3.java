@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Question3 {
+
+    static String validateFileExtension(String filename) {
+
+        int dotPosition = filename.lastIndexOf('.');
+
+        if (dotPosition == -1 || dotPosition == filename.length() - 1) {
+            return "Rejected — invalid file type";
+        }
+
+        String extension = filename.substring(dotPosition + 1);
+
+        if (extension.equalsIgnoreCase("pdf") ||
+            extension.equalsIgnoreCase("docx") ||
+            extension.equalsIgnoreCase("zip")) {
+
+            return "Accepted";
+        }
+
+        return "Rejected — invalid file type";
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String filename = sc.nextLine();
+
+        System.out.println(validateFileExtension(filename));
+
+        sc.close();
+    }
+}
